@@ -21,3 +21,22 @@ var getIntersectionNode = function(headA, headB) {
 	}
 	return null
 };
+/**
+ * 思路：
+ * 1. 遍历链表，自己走自己的路
+ * 2. 遍历完毕后没有发现有相同的节点，则走别人的路（在第二遍换边了之后，大家的步伐就一致了）
+ * 3. 在步伐一致的情况下比较有相同的节点，则返回该节点，如果一直没有的话，两边的节点到最后都会为null，这时候则会返回null
+ */
+var getIntersectionNode = function(headA, headB) {
+	if (!headA || !headB) {
+		return null
+	}
+	let
+		h1 = headA,
+		h2 = headB
+	while (h1 !== h2) {
+		h1 = h1 === null ? headB : h1.next
+		h2 = h2 === null ? headA : h2.next
+	}
+	return h1
+};

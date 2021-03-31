@@ -8,7 +8,7 @@ var search = function(nums, target) {
 		mid = Math.floor(nums.length / 2),
 		high = nums.length - 1,
 		low = 0
-	while (high >= low) {
+	while (low <= high) {
 		if (nums[mid] === target) {
 			return mid
 		} else if (nums[low] === target) {
@@ -26,7 +26,7 @@ var search = function(nums, target) {
 };
 
 var binarySearch = function(nums, low, high, target) {
-	if (high < low) {
+	if (low > high) {
 		return -1 
 	}
 	let mid = ~~((low + high) / 2)

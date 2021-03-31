@@ -13,6 +13,8 @@
  }
  
  返回值: 2
+ 
+ 思路：使用while + for循环的方式按层遍历，一层遍历完之后再继续遍历下一层，最终通过层数判断出路径长短
  */
 var bfs = function(hashObj, target) {
 	if (!hashObj) {
@@ -30,7 +32,7 @@ var bfs = function(hashObj, target) {
 			}
 		}
 		arr = newArr
-		long++
+		long ++
 	}
 	return long
 }

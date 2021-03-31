@@ -16,7 +16,7 @@ var reverseList = function(head) {
 	for (let i = arr.length - 1; i >= 0; i--) {
 		if (i === 0) {
 			arr[i].next = null
-			break
+			continue
 		}
 		arr[i].next = arr[i - 1]
 	}

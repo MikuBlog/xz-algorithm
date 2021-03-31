@@ -11,11 +11,8 @@ var hasCycle = function(head) {
 	if (!head) {
 		return false
 	}
-	let map = new Map()
+	let map = new WeakMap()
 	while (head) {
-		if (!head.next) {
-			return false
-		}
 		if (!map.has(head)) {
 			map.set(head, head.val)
 		} else {
@@ -23,4 +20,5 @@ var hasCycle = function(head) {
 		}
 		head = head.next
 	}
+	return false
 };

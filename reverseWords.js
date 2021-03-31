@@ -7,5 +7,5 @@
  * 思路：利用js api完成
  */
 var reverseWords = function(s) {
-	return s.split(" ").reverse().filter(val => val).join(" ").replace(/^\s+|\s+$/, '')
+	return s.split(" ").reverse().filter(val => val).join(" ").trim()
 };
