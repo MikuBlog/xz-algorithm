@@ -22,3 +22,25 @@ var hasCycle = function(head) {
 	}
 	return false
 };
+
+/**
+ * 思路：采用双指针（快慢指针）
+ * 1. 快指针比慢指针快两倍
+ * 2. 如果快指针最终与慢指针相等，则表示有环
+ * 3. 如果快指针提前为null，则表示没有环
+ */
+
+var hasCycle = function(head) {
+	if (!head) {
+		return false
+	}
+	let slow = fast = head
+	while (fast !== null && fast.next !== null) {
+		slow = slow.next
+		fast = fast.next.next
+		if (slow === fast) {
+			return true
+		}
+	}
+	return false
+};

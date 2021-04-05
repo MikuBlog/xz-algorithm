@@ -24,3 +24,20 @@ var fib = function(n) {
 		return cache[n] = (fib(n - 1) + fib(n - 2)) % 1000000007
 	}
 };
+
+/**
+ * 思路：相比缓存来说，这样的空间复杂度变为O(1)，时间复杂度只要O(n)
+ */
+var fib = function(n) {
+	if (n === 1 || n === 2) return 1
+	let
+		pre = 1,
+		next = 1,
+		sum = 0
+	for (let i = 3; i <= n; i++) {
+		sum = (pre + next) % 1000000007
+		pre = next
+		next = sum
+	}
+	return sum
+};
