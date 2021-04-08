@@ -38,23 +38,24 @@ var findArr = function(oArr, newArr) {
  */
 var buildTree = function(preorder, inorder) {
 	let
-		index = 0,
+		preInd = 0,
 		cache = new Map()
 	for (let i = 0; i < inorder.length; i++) {
 		cache.set(inorder[i], i)
 	}
 
 	function build(left, right) {
-		if (left === right) {
+		if (left > right) {
 			return null
 		}
 		let
-			num = preorder[index++],
-			root = new TreeNode(num),
-			inorderInd = cache.get(num)
-		root.left = build(left, inorderInd)
-		root.right = build(inorderInd + 1, right)
+			num = preorder[preInd],
+			inoInd = cache.get(num),
+			root = new TreeNode(num)
+		preInd++
+		root.left = build(left, inoInd - 1)
+		root.right = build(inoInd + 1, right)
 		return root
 	}
-	return build(0, inorder.length)
+	return build(0, inorder.length - 1)
 };

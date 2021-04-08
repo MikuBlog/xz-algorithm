@@ -53,3 +53,27 @@ var jutify = function(arr) {
 	}
 	return true
 }
+
+
+/**
+ * 思路：前序遍历（dfs）
+ * 判断根节点的左子树和右子树是否相等转化为 ---> 判断左子树的左节点的值是否等于右子树右节点的值，左子树右节点的值是否等于右子树左节点的值即可
+ */
+var isSymmetric = function(root) {
+	if (!root) return false
+	return dfs(root.left, root.right)
+};
+
+var dfs = function(left, right) {
+	if (!left && !right) {
+		return true
+	}
+	if (!left || !right) {
+		return false
+	}
+	if (left.val === right.val) {
+		return dfs(left.left, right.right) && dfs(left.right, right.left)
+	} else {
+		return false
+	}
+}

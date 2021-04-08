@@ -25,7 +25,7 @@ var twoSum = function(nums, target) {
  */
 
 var twoSum = function(nums, target) {
-	let 
+	let
 		left = 0,
 		right = nums.length - 1,
 		sum = 0
@@ -40,3 +40,23 @@ var twoSum = function(nums, target) {
 		}
 	}
 };
+/**
+ * 大数相加
+ */
+function twoSum(num1, num2) {
+	let
+		max = Math.max(num1.length, num2.length),
+		result = Array(max).fill(0),
+		plusInd = max - 1
+	num1 = num1.padStart(max, '0')
+	num2 = num2.padStart(max, '0')
+	for (let i = max - 1; i >= 0; i--) {
+		result[i] += +num1[plusInd] + +num2[plusInd]
+		if (result[i] >= 10 && result[i - 1] !== undefined) {
+			result[i] %= 10
+			result[i - 1] += 1
+		}
+		plusInd--
+	}
+	return result.join("")
+}

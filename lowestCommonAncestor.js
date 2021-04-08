@@ -47,18 +47,18 @@ var lowestCommonAncestor = function(root, p, q) {
  */
 var lowestCommonAncestor = function(root, p, q) {
 	if (!root) return null
-	if (root.val === p.val || root.val === q.val) {
+	if (root === p || root === q) {
 		return root
 	}
 	let
-		leftRoot = lowestCommonAncestor(root.left, p, q),
-		rightRoot = lowestCommonAncestor(root.right, p, q)
-	if (leftRoot !== null && rightRoot !== null) {
+		isLeftRoot = lowestCommonAncestor(root.left, p, q),
+		isRightRoot = lowestCommonAncestor(root.right, p, q)
+	if (isLeftRoot && isRightRoot) {
 		return root
-	} else if (leftRoot !== null) {
-		return leftRoot
-	} else if (rightRoot !== null) {
-		return rightRoot
+	} else if (isLeftRoot) {
+		return isLeftRoot
+	} else if (isRightRoot) {
+		return isRightRoot
 	} else {
 		return null
 	}

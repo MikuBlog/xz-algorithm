@@ -25,3 +25,19 @@ var isValid = function(s) {
 	}
 	return s === ''
 };
+
+/**
+ * 思路：使用栈进行匹配
+ */
+var isValid = function(s) {
+	let stack = []
+	for (let i = 0; i < s.length; i++) {
+		if (stack[stack.length - 1] === "(" && s[i] === ")" || stack[stack.length - 1] === "[" && s[i] === "]" || stack[
+				stack.length - 1] === "{" && s[i] === "}") {
+			stack.pop()
+		} else {
+			stack.push(s[i])
+		}
+	}
+	return !stack.length
+};

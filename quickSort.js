@@ -57,7 +57,6 @@ var quickSort = function(arr, left, right) {
 	}
 	arr[left] = arr[i]
 	arr[i] = base
-	console.log(arr)
 	quickSort(arr, left, i - 1)
 	quickSort(arr, i + 1, right)
 	return arr
