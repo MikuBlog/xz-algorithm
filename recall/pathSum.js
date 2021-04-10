@@ -21,19 +21,24 @@
  思路：（DFS）前序遍历即可
  注意点：每递归一次将元素出列一次，保证sum的值与cache的值同步
  */
-var pathSum = function(root, target) {
+var pathSum = function(root, targetSum) {
 	if (!root) return []
 	let result = []
-	dfs(root, target, result, 0, [])
+	getPath(root, targetSum, 0, [], result)
 	return result
 };
 
-var dfs = function(root, target, result, sum, cache) {
+var getPath = function(root, targetSum, sum, cache, result) {
 	sum += root.val
 	cache.push(root.val)
-	root.left && dfs(root.left, target, result, sum, cache)
-	root.right && dfs(root.right, target, result, sum, cache)
-	if (sum === target && !root.left && !root.right) {
+	if (root.left && root.right) {
+		getPath(root.left, targetSum, sum, cache, result)
+		getPath(root.right, targetSum, sum, cache, result)
+	} else if (root.left) {
+		getPath(root.left, targetSum, sum, cache, result)
+	} else if (root.right) {
+		getPath(root.right, targetSum, sum, cache, result)
+	} else if (targetSum === sum) {
 		result.push([...cache])
 	}
 	cache.pop()

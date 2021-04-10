@@ -37,22 +37,22 @@ var sortArrayByParity = function(A) {
  * 思路：从左侧起找偶数，从右侧起找基数，找到后两者调换，时间为O(n)，空间为O(1)
  */
 
-var sortArrayByParity = function(nums) {
+var sortArrayByParity = function(A) {
 	let
 		left = 0,
-		right = nums.length - 1
+		right = A.length - 1
 	while (left < right) {
-		while (left < right && nums[left] % 2 != 0) {
+		while (left < right && A[left] % 2 === 0) {
 			left++
 		}
-		while (left < right && nums[right] % 2 == 0) {
+		while (left < right && A[right] % 2 !== 0) {
 			right--
 		}
 		if (left < right) {
-			let temp = nums[left]
-			nums[left] = nums[right]
-			nums[right] = temp
+			let temp = A[left]
+			A[left] = A[right]
+			A[right] = temp
 		}
 	}
-	return nums
+	return A
 };

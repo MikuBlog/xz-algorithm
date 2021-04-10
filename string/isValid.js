@@ -32,8 +32,9 @@ var isValid = function(s) {
 var isValid = function(s) {
 	let stack = []
 	for (let i = 0; i < s.length; i++) {
-		if (stack[stack.length - 1] === "(" && s[i] === ")" || stack[stack.length - 1] === "[" && s[i] === "]" || stack[
-				stack.length - 1] === "{" && s[i] === "}") {
+		let stackInd = stack.length - 1
+		if (stack[stackInd] === "(" && s[i] === ")" || stack[stackInd] === "[" && s[i] === "]" || stack[
+				stackInd] === "{" && s[i] === "}") {
 			stack.pop()
 		} else {
 			stack.push(s[i])
