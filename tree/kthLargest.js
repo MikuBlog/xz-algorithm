@@ -22,23 +22,20 @@ var kthLargest = function(root, k) {
 
 /**
  * 条件：二叉搜索树(排好序的树结构)
- * 思路：二叉搜索树通过终须遍历即为排好序的树，然后再取值
+ * 思路：二叉搜索树通过反向中序遍历即为排好序的树，然后再取值
  */
 
-var sortNode = function(root) {
-	if (!root) {
-		return []
-	}
-	let newArr = []
-	root.left && (newArr = newArr.concat(sortNode(root.left)))
-	newArr.push(root.val)
-	root.right && (newArr = newArr.concat(sortNode(root.right)))
-	return newArr
-}
 var kthLargest = function(root, k) {
-	if (!root) {
-		return null
+	if (!root) return null
+	let result
+	findK(root)
+
+	function findK(root) {
+		if (!root || k <= 0) return
+		findK(root.right)
+		k -= 1
+		k === 0 && (result = root.val)
+		findK(root.left)
 	}
-	let arr = sortNode(root)
-	return arr[arr.length - k]
+	return result
 };

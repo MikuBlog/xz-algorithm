@@ -23,12 +23,12 @@
  3. 步骤：通过遍历的方式找到最低股价，同时查找差价最大的那一天并记录下来。当下次找到更低的股价或更大的差价再记录下来
  */
 var maxProfit = function(prices) {
-	let
-		min = prices[0],
-		result = 0
-	for (let i = 0; i < prices.length; i++) {
-		min = Math.min(min, prices[i])
-		result = Math.max(result, prices[i] - min)
+	if (!prices.length) return 0
+	let dp = Array(prices.length).fill(0)
+	let min = prices[0]
+	for (let i = 1; i < prices.length; i++) {
+		min = Math.min(prices[i], min)
+		dp[i] = Math.max(prices[i] - min, dp[i - 1])
 	}
-	return result
+	return dp[dp.length - 1]
 };
