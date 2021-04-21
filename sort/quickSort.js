@@ -35,7 +35,7 @@ var quickSort = function(arr) {
  * 这里先从右往左找的意义在于j找到的第一个数肯定是比基准数要小的，而i找到的第一个数肯定是比基准值大的。假设先从左往右找，i找到第一个基准值大的数刚好又与j相交了，这时候调换位置就会将比基准值大的数调换到前面去，导致顺序错位，如基准值6 与 9 调换，导致9去到前面，顺序错乱
  */
 var quickSort = function(arr, left, right) {
-	if (left >= right) {
+	if (left > right) {
 		return
 	}
 	let

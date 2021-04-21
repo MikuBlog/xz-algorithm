@@ -49,13 +49,36 @@ var buildTree = function(preorder, inorder) {
 			return null
 		}
 		let
-			num = preorder[preInd],
+			num = preorder[preInd++],
 			inoInd = cache.get(num),
 			root = new TreeNode(num)
-		preInd++
 		root.left = build(left, inoInd - 1)
 		root.right = build(inoInd + 1, right)
 		return root
 	}
 	return build(0, inorder.length - 1)
+};
+
+/**
+ * 通过中序 + 后序构建树
+ */
+var buildTree = function(inorder, postorder) {
+	let map = new Map()
+	for (let i = 0; i < inorder.length; i++) {
+		map.set(inorder[i], i)
+	}
+
+	function build(left, right, postStart, postEnd) {
+		if (left > right) {
+			return null
+		}
+		let
+			num = postorder[postEnd],
+			inorderInd = map.get(num),
+			root = new TreeNode(num)
+		root.left = build(left, inorderInd - 1, postStart, postStart + inorderInd - 1 - left)
+		root.right = build(inorderInd + 1, right, postStart + inorderInd - left, postEnd - 1)
+		return root
+	}
+	return build(0, inorder.length - 1, 0, postorder.length - 1)
 };

@@ -20,22 +20,14 @@
  思路：暴力穷举双指针
  */
 var longestCommonPrefix = function(strs) {
-	if (!strs.length || !strs[0]) return ""
-	let
-		left = 0,
-		right = 0,
-		str = "",
-		justifyStr = strs[0]
-	while (right < justifyStr.length) {
-		str = ""
-		for (let i = left; i <= right; i++) {
-			str += justifyStr[i]
+	if (!strs.length) return ''
+	if (strs.length === 1) return strs[0]
+	let str = ""
+	for (let i = 0; i < strs[0].length; i++) {
+		for (let j = 1; j < strs.length; j++) {
+			if (strs[j - 1][i] !== strs[j][i]) return str
+			else if (j === strs.length - 1) str += strs[j][i]
 		}
-		for (let i = 0; i < strs.length; i++) {
-			let ind = strs[i].indexOf(str)
-			if (ind === -1 || ind !== 0) return str.substring(0, str.length - 1)
-		}
-		right++
 	}
 	return str
 };

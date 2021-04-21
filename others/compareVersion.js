@@ -36,10 +36,8 @@ var compareVersion = function(version1, version2) {
 	version2 = version2.split(".")
 	let len = Math.max(version1.length, version2.length)
 	for (let i = 0; i < len; i++) {
-		if (+version1[i] > +version2[i]) return 1
-		else if (!version1[i] && !(version1[i] = 0) && version1[i] < version2[i]) return -1
-		else if (!version2[i] && !(version2[i] = 0) && version1[i] > version2[i]) return 1
-		else if (+version1[i] < +version2[i]) return -1
+		if (version1[i] > version2[i] || +version1[i] && !version2[i]) return 1
+		else if (version1[i] < version2[i] || !version1[i] && +version2[i]) return -1
 	}
 	return 0
 };
