@@ -13,3 +13,20 @@ var preorderTraversal = function(root) {
 	}
 	return deep(root, [])
 };
+
+
+var preorder = function(root) {
+	if (!root) return []
+	let result = []
+
+	function dfs(root) {
+		result.push(root.val)
+		if (root.children.length) {
+			for (let i = 0; i < root.children.length; i++) {
+				dfs(root.children[i])
+			}
+		}
+	}
+	dfs(root)
+	return result
+};

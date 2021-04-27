@@ -24,6 +24,22 @@ function maxDepth(obj) {
 			arr.push(maxDepth(obj[key]) + 1)
 		}
 	}
-	if(!arr.length) return 0
+	if (!arr.length) return 0
 	return Math.max(...arr)
 }
+
+
+/**
+ * 多叉树的最大深度
+ */
+var maxDepth = function(root) {
+	if (!root) return 0
+	if (root.children.length) {
+		let arr = []
+		for (let i = 0; i < root.children.length; i++) {
+			arr.push(maxDepth(root.children[i]) + 1)
+		}
+		return Math.max(...arr)
+	}
+	return 1
+};

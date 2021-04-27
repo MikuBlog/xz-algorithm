@@ -13,3 +13,22 @@ var postorderTraversal = function(root) {
 	}
 	return deep(root, [])
 };
+
+/**
+ * 多叉树的后序遍历
+ */
+var postorder = function(root) {
+	if (!root) return []
+	let result = []
+
+	function dfs(root) {
+		if (root.children.length) {
+			for (let i = 0; i < root.children.length; i++) {
+				dfs(root.children[i])
+			}
+		}
+		result.push(root.val)
+	}
+	dfs(root)
+	return result
+};
