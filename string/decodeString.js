@@ -40,7 +40,6 @@ var decodeString = function(s) {
 		} else {
 			stack.push(s[i])
 		}
-		tempStr = ""
 	}
 	return stack.join("")
 };

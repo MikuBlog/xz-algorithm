@@ -14,7 +14,9 @@ var preorderTraversal = function(root) {
 	return deep(root, [])
 };
 
-
+/**
+ * 多叉树的前序遍历
+ */
 var preorder = function(root) {
 	if (!root) return []
 	let result = []

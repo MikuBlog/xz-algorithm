@@ -20,14 +20,14 @@ var lengthOfLongestSubstring = function(s) {
 		left = 0,
 		right = 0,
 		maxLen = 0,
-		cache = new Map()
+		cache = new Set()
 	while (right < s.length) {
 		for (let i = left; i <= right; i++) {
 			if (cache.has(s[i])) {
 				left++
 				break
 			} else {
-				cache.set(s[i], true)
+				cache.add(s[i])
 			}
 		}
 

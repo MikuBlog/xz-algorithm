@@ -11,7 +11,7 @@ var kthSmallest = function(root, k) {
 	let val = undefined
 
 	function dfs(root) {
-		if (!root || k < 0) return
+		if (!root || k <= 0) return
 		dfs(root.left)
 		k -= 1
 		if (k === 0) return val = root.val

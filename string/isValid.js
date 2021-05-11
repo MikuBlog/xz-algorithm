@@ -42,3 +42,44 @@ var isValid = function(s) {
 	}
 	return !stack.length
 };
+
+/**
+ * 是否是有效的html
+ */
+var isValidHtml = function(s) {
+	let stack = []
+	s = s.match(/<\/?[a-zA-Z]+\/?>/g)
+	for (let i = 0; i < s.length; i++) {
+		let stackInd = stack.length - 1
+		if (jutifyTag(stack[stackInd], s[i])) {
+			stack.pop()
+		} else {
+			stack.push(s[i])
+		}
+	}
+	return !stack.length
+};
+
+var jutifyTag = function(sTag, eTag) {
+	switch (sTag) {
+		case "<div>":
+			return eTag === '</div>'
+		case "<p>":
+			return eTag === '</p>'
+		case "<span>":
+			return eTag === '</span>'
+		case "<a>":
+			return eTag === '</a>'
+		case "<input>":
+			return eTag === '</input>'
+	}
+	switch (eTag) {
+		case "<hr/>":
+			return true
+		case "<br/>":
+			return true
+		case "<img>":
+			return true
+	}
+	return false
+}
